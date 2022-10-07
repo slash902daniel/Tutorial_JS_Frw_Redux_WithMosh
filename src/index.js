@@ -45,7 +45,7 @@ let message = fn2();
 //Is a function that takes a function as arg or returns it or both.
 
 //HIGH ORDER FUNCTIONS - VERSION 1 ----------------------------------------------------------
-function greet(fn) {
+function greet3(fn) {
     console.log(fn());
 }
 
