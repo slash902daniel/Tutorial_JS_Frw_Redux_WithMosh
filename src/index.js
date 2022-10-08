@@ -5,6 +5,8 @@
 2) High Order functions
 3) Function Composition
 4) Currying
+5) Pure Functions
+6) Inmutability
 */ 
 
 
@@ -122,3 +124,51 @@ const wrap = type => str => `<${type}>${str}</${type}>`;
 
 const transformWithPipe2 = pipe(trim, toLowerCase, wrap("div"));
 transformWithPipe2(input);
+
+
+//==========================================================================================
+//5) PURE FUNCTIONS
+//Is alwayas called with same ARGS = same result
+
+//CANNOT USE:
+//No random values
+//No current date/time
+//No global state (DOM, files, db, etc)
+//NO mutation of parameters (are inmutable)
+
+//BENEFITS:
+//Self-documenting
+//Easily testable
+//Concurrency
+//Cacheable
+
+function notPurefunction(number) {
+    return number * Math.random();
+}
+
+function purefunction(number) {
+    return number * 2;
+}
+
+function isElegible(age) {
+    return age > minAge;
+    //canot be pure as minAge is global an can change
+}
+
+//==========================================================================================
+//6) INMUTABILITY
+//In JS Objects/Arrays are mutable 
+//SO JS is not a PURE Functional Programing language
+
+//PROS:
+//Predictability
+//Faster Chnage Detection
+//Concurrency
+
+//CONS
+//Performance *for may obj
+//Memory overhead   *can be tacke with "Structural sharing"
+
+//EXERCISES:
+
+
