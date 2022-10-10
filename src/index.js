@@ -7,6 +7,13 @@
 4) Currying
 5) Pure Functions
 6) Inmutability
+7) EXERCISES (Ubdating objects)
+8) EXERCISES (Ubdating arrays)
+9) POPULAR LIBRARIES
+10) Inmtable Library
+11) Immer Library
+12)
+13)
 */ 
 
 
@@ -78,7 +85,7 @@ let input = '   Javascript   '
 let output = '<div>' + input.trim() + '</div>'
 
 //example functional
-const trim = str = str.trim();
+const trim = str => str.trim();
 const wrapInDiv = str => `<div>${str}</div>`;
 const toLowerCase = str => str.toLowerCase();
 
@@ -169,6 +176,93 @@ function isElegible(age) {
 //Performance *for may obj
 //Memory overhead   *can be tacke with "Structural sharing"
 
-//EXERCISES:
+//==========================================================================================
+//7)EXERCISES (Ubdating objects):
+
+const person = {
+    name: "John",
+    address: {
+        country: "USA",
+        city: "San Francisco"
+    }
+};
+
+//Option 1
+const updated = Object.assign({},person,{name: "Bob", age: 30})
+console.log(updated);
+
+//Option 2 (Spread operator) - pure copy
+const updated2 = {...person};
+console.log(updated2);
+
+//Option 3 (Spread operator) - mod copy
+const updated3 = {...person, name: "leo"};
+console.log(updated3);
+
+//Option 4 (Spread operator) - mod copy - 
+//BEWARE nested .. share memory the change afect both!
+const updated4 = {...person, name: "leo"};
+updated4.address.city = "NY";
+console.log(updated4);
+console.log(updated);
+
+//Option 5 (Spread operator) - mod copy - 
+//BEWARE nested .. to AVOID afect both! you need to do
+//DEEP COPY (is more verbose)
+const updated5 = {
+    ...person, 
+    address: {
+        ...person.address,
+        citi: "New York"
+    },
+    name: "Bob"
+};
+updated5.address.city = "NY";
+console.log(updated5);
+
+//==========================================================================================
+//8)EXERCISES (Ubdating arrays):
+
+const numberss = [1,2,3];
+
+//Adding new at beginning
+const index = numberss.indexOf(2);
+
+//Adding specific position
+const addedv1 = [
+    ...numberss.slice(0,index),
+    4,
+    ...numberss.slice(index)
+    ];
+
+//Adding new at beginning
+const addedv2 = [4,...numberss];
+
+//Adding new at end
+const addedv3 = [...numberss, 4];
+
+//Removing
+const removev1 = numberss.filter(n => n !== 2);
+
+//Updating
+const updatedv1 = numberss.map(n => n === 2 ? 20 : n);
+console.log(updatedv1);
+
+//==========================================================================================
+//9)POPULAR LIBRARIES
+/*
+Inmutable
+Immer
+Mori
+*/
+
+//==========================================================================================
+//10)INMUTABLE (LIBRARY)
 
 
+//==========================================================================================
+//11)IMMER (LIBRARY)
+
+
+//==========================================================================================
+//12)IMMER (LIBRARY)
