@@ -311,3 +311,68 @@ console.log(updatedBook);
 //==========================================================================================
 //12)REDUX
 
+/*
+For a bug tracking application:
+
+STEPS:
+1)Design the Store
+2)Define the actions
+3)Create a reducer
+4)Setup the store
+*/
+
+//==========================================================================================
+//1)Design the Store
+
+/*
+    [
+        { 
+            id: 1,
+            description: "",
+            resolved: false
+        },
+        { ... },
+        { ... },
+    ]
+*/
+
+//==========================================================================================
+//2)Define the actions
+/*
+Add a Bug
+Marck as Resolved
+Delete a Bug
+
+
+example of object:
+
+    {
+        type: "ADD_BUG", --> only property that redux expects
+        description: "..."
+    }
+
+
+
+    A common approach based in FLEX
+    Pro - common and consistent structure
+
+    {
+        type: "bugAdded", --> only property that redux expects
+        payload: {
+            id: 1,
+            description: "...",
+            others: '...',
+        }
+    }
+
+
+
+*/
+
+
+//==========================================================================================
+//3) Create a reducer
+/*
+Add a Bug
+*/
+
