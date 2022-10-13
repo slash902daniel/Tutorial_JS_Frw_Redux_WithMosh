@@ -1,3 +1,6 @@
+import { Map, map } from 'immutable';
+import { produce } from 'immer'
+
 //FUNCTIONAL PROGRAMMING
 
 /* MAIN CONCEPTS
@@ -10,9 +13,9 @@
 7) EXERCISES (Ubdating objects)
 8) EXERCISES (Ubdating arrays)
 9) POPULAR LIBRARIES
-10) Inmtable Library
+10) Immtable js Library
 11) Immer Library
-12)
+12) REDUX
 13)
 */ 
 
@@ -251,18 +254,60 @@ console.log(updatedv1);
 //==========================================================================================
 //9)POPULAR LIBRARIES
 /*
-Inmutable
+Immutable js
 Immer
 Mori
 */
 
+//REGULAR MUTABLE - EJEMPLO
+let book = { title: "Harry Potter"}
+
+function publish(book) {
+    book.isPublished = true;
+}
+
+publish(book);
+console.log(book);
+
+
 //==========================================================================================
-//10)INMUTABLE (LIBRARY)
+//10)IMMUTABLE js (LIBRARY)
+
+//EJEMPLO
+let book2 = Map({ title: "Harry Potter"})
+
+function publish2(book) {
+    return book.set("isPublished", true);
+}
+console.log(book2.toJS);
+
+book2 = publish2(book2);
+console.log(book2.toJS);
+
+
+//PROBLEM cannot access by REGULAR methods..so we need to learn a new api
+//hard to integrate with plain JS objects
+
+///REGULAR                 ==>  INMUTABLE 
+//console.log(book.title); ==> console.log(book.get('title'));
+//console.log(book);       ==> console.log(book.toJS);
 
 
 //==========================================================================================
 //11)IMMER (LIBRARY)
 
+let book3 = { title: "Harry Potter"}
+
+function publish3(book) {
+    return produce(book, draftBook => {
+        draftBook.isPublished = true;
+    });
+}
+
+let updatedBook = publish3(book3);
+console.log(book);
+console.log(updatedBook);
 
 //==========================================================================================
-//12)IMMER (LIBRARY)
+//12)REDUX
+
