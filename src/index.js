@@ -396,10 +396,15 @@ console.log(store.getState());
 
 //Add a bug
 store.dispatch(actionscreator.bugAdded("Bug 1"));
-console.log(store.getState());
 
-unsubscribe(); //user navigates away! 
+//Add a second bug
+store.dispatch(actionscreator.bugAdded("Bug 2"));
 
+console.log('BEFORE RESOLVE!');
+//Resolve a bug
+store.dispatch(actionscreator.bugResolved(1));
+
+console.log('BEFORE DELETE A BUG!');
 //Delete a bug
 store.dispatch({
     type: actions.BUG_REMOVED,
@@ -407,4 +412,9 @@ store.dispatch({
         id: 1,
     }
 });
-console.log(store.getState());
+
+console.log('BEFORE UNSUBSCRIBRE!');
+unsubscribe(); //user navigates away! 
+
+//Resolve a bug (2) will be ignored as unsubscribe was done
+store.dispatch(actionscreator.bugResolved(2));
