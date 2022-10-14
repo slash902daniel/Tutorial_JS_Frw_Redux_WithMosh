@@ -381,6 +381,9 @@ example of object:
 //4) Setup the store
 
 import store from './store';
+import * as actionscreator from './actionsCreator'
+import * as actions from './actionTypes'
+
 //unsubscribe   if user navigates to ther page  --> avoid memory leaks
 //Subscribe     any user action in the page
 const unsubscribe = store.subscribe(() => {
@@ -392,22 +395,16 @@ const unsubscribe = store.subscribe(() => {
 console.log(store.getState());
 
 //Add a bug
-store.dispatch({
-    type: "bugAdded",
-    payload: {
-        description: "Bug1"
-    }
-});
+store.dispatch(actionscreator.bugAdded("Bug 1"));
 console.log(store.getState());
 
 unsubscribe(); //user navigates away! 
 
 //Delete a bug
 store.dispatch({
-    type: "bugRemoved",
+    type: actions.BUG_REMOVED,
     payload: {
         id: 1,
     }
 });
 console.log(store.getState());
-
