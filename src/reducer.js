@@ -1,4 +1,4 @@
-lastId = 0;
+let lastId = 0;
 
 export default function reducer(state = [], action) {
     //VERSION WITH SWITCH

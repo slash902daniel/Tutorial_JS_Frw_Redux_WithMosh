@@ -1,6 +1,10 @@
 import { Map, map } from 'immutable';
 import { produce } from 'immer'
 
+
+
+
+
 //FUNCTIONAL PROGRAMMING
 
 /* MAIN CONCEPTS
@@ -372,7 +376,38 @@ example of object:
 
 //==========================================================================================
 //3) Create a reducer
-/*
-Add a Bug
-*/
+
+//==========================================================================================
+//4) Setup the store
+
+import store from './store';
+//unsubscribe   if user navigates to ther page  --> avoid memory leaks
+//Subscribe     any user action in the page
+const unsubscribe = store.subscribe(() => {
+    //Used for UI to reload/refresh page elements
+    console.log('store changed!', store.getState());
+});
+
+//Empty as nothing submitted
+console.log(store.getState());
+
+//Add a bug
+store.dispatch({
+    type: "bugAdded",
+    payload: {
+        description: "Bug1"
+    }
+});
+console.log(store.getState());
+
+unsubscribe(); //user navigates away! 
+
+//Delete a bug
+store.dispatch({
+    type: "bugRemoved",
+    payload: {
+        id: 1,
+    }
+});
+console.log(store.getState());
 
